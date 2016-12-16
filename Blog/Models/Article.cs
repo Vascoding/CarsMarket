@@ -34,7 +34,7 @@ namespace Blog.Models
             this.CategoryId = categoryId;
             this.tags = new HashSet<Tag>();
             this.files = new List<File>();
-            
+
         }
 
         [ForeignKey("Category")]

@@ -27,11 +27,12 @@ namespace Blog.Models
 
         public byte[] Image { get; set; }
 
+        
         public ICollection<File> Files { get; set; }
 
         public ICollection<Cars> Carses { get; set; }
 
-        
+
 
         public double Price { get; set; }
 

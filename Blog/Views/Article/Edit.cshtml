@@ -66,8 +66,9 @@
                         new { @class = "btn btn-info col-sm-12" })
                 </div>
             </div>
-
-            
+            <span>
+                <img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Avatar).FileId" alt="avatar" width="800px" />
+            </span>
             <span class="form-group">
                 @Html.Label("Picture", new { @class = "control-label col-sm-4" })
                 <div class="col-sm-4">

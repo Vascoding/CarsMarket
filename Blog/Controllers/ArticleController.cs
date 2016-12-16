@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -195,6 +196,7 @@ namespace Blog.Controllers
                 }
 
                 // Delete article from database
+                database.Files.Remove(article.Files.First(f => f.FileType == FileType.Avatar));
                 database.Articles.Remove(article);
                 database.SaveChanges();
 
@@ -221,7 +223,7 @@ namespace Blog.Controllers
                     .Include(a => a.Files)
                     .First();
                     
-
+                    
                 if (!IsUserAuthorizedToEdit(article))
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
@@ -247,7 +249,7 @@ namespace Blog.Controllers
                 model.Categories = database.Categories
                     .OrderBy(c => c.Name)
                     .ToList();
-
+                model.Files = article.Files;
                 model.Tags = string.Join(", ", article.Tags.Select(t => t.Name));
                 // Pass the view model to view
                 return View(model);
@@ -258,7 +260,7 @@ namespace Blog.Controllers
         // Post: Article/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ArticleViewModel model)
+        public ActionResult Edit(ArticleViewModel model, HttpPostedFileBase upload)
         {
             // Check if model state is valid
             if (ModelState.IsValid)
@@ -277,13 +279,30 @@ namespace Blog.Controllers
                     article.City = model.City;
                     article.HorsePower = model.HorsePower;
                     article.Content = model.Content;
-                   
-
                     article.CategoryId = model.CategoryId;
+                    article.Files = model.Files;
+
                     this.SetArticleTags(article, model, database);
 
 
-                    
+                    if (upload != null && upload.ContentLength > 0)
+                    {
+                        if (article.Files.Any(f => f.FileType == FileType.Avatar))
+                        {
+                            database.Files.Remove(article.Files.First(f => f.FileType == FileType.Avatar));
+                        }
+                        var avatar = new File
+                        {
+                            FileName = System.IO.Path.GetFileName(upload.FileName),
+                            FileType = FileType.Avatar,
+                            ContentType = upload.ContentType
+                        };
+                        using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                        {
+                            avatar.Content = reader.ReadBytes(upload.ContentLength);
+                        }
+                        article.Files = new List<File> { avatar };
+                    }
 
                     // Save article state in database
                     database.Entry(article).State = EntityState.Modified;
