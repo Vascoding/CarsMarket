@@ -1,0 +1,49 @@
+﻿
+@model List<Blog.Models.Article>
+@{
+    ViewBag.Title = "List";
+}
+
+<div class="container">
+    <div class="row">
+        @foreach (var article in Model)
+        {
+            <div class="col-sm-6">
+                <article>
+                    <header>
+                        <h2>
+                            @Html.ActionLink(@article.Title, "Details", "Article", new { @id = article.Id }, null)
+                        </h2>
+                    </header>
+                    <p>
+                        
+                        @if (article.Files.Any(f => f.FileType == FileType.Avatar))
+                        {
+                            <a class="media-left" href="@Url.Action("Details", "Article", new { id = article.Id })">
+                                <img class="media-object" src="~/File?id=@article.Files.First(f => f.FileType == FileType.Avatar).FileId" alt="image" width="180" />
+                            </a>
+                        }
+                        
+                    </p>
+                    
+                    
+                    <footer>
+                        
+                        <div class="pull-left">
+                            @foreach (var tag in article.Tags)
+                            {
+                                @Html.ActionLink(tag.Name, "List", "Tag", new {@id = tag.Id}, new {@class = "btn btn-default btn-xs"})
+                            }
+                        </div>
+                        <small class="author pull-right">
+                            --author @article.Author.FullName
+                        </small>
+                    </footer>
+                </article>
+            </div>
+        }
+
+
+    </div>
+</div>
+<hr />
