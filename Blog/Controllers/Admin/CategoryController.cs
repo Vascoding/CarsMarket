@@ -41,12 +41,28 @@ namespace Blog.Controllers.Admin
         //
         // Post: Category/Create
         [HttpPost]
-        public ActionResult Create(Category category)
+        [Authorize]
+        public ActionResult Create(Category category, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
                 using (var database = new BlogDbContext())
                 {
+                    if (upload != null && upload.ContentLength > 0)
+                    {
+                        var avatar = new File
+                        {
+                            FileName = System.IO.Path.GetFileName(upload.FileName),
+                            FileType = FileType.Avatar,
+                            ContentType = upload.ContentType
+                        };
+                        using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                        {
+                            avatar.Content = reader.ReadBytes(upload.ContentLength);
+                        }
+                        category.Files = new List<File> { avatar };
+                    }
+
                     database.Categories.Add(category);
                     database.SaveChanges();
 

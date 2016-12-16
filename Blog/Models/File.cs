@@ -10,6 +10,8 @@ namespace Blog.Models
     {
         private ICollection<Article> articles;
 
+        private ICollection<Category> categories;
+
         public int FileId { get; set; }
 
         [StringLength(255)]
@@ -24,6 +26,8 @@ namespace Blog.Models
         
         public virtual ICollection<Article> Article { get; set; }
 
-        
+        public virtual ICollection<Category> Category { get; set; }
+
+
     }
 }

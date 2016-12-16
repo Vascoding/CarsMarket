@@ -12,6 +12,8 @@ namespace Blog.Models
         
         private ICollection<Article> articles;
 
+        private ICollection<File> files;
+
         public Category()
         {
             this.articles = new HashSet<Article>();
@@ -28,5 +30,13 @@ namespace Blog.Models
         public virtual ICollection<Article> Articles { get; set; }
         
         public virtual Cars Cars { get; set; }
+
+        public virtual ICollection<File> Files
+        {
+            get { return this.files; }
+            set { this.files = value; }
+        }
+
+        public virtual ICollection<FilePath> FilePaths { get; set; }
     }
 }
