@@ -29,13 +29,6 @@ namespace Blog.Models
         
         
         public virtual ICollection<Article> Article { get; set; }
-<<<<<<< HEAD
-        
-=======
-
         public virtual ICollection<Category> Category { get; set; }
-
-
->>>>>>> bb61d439e6459025ec9cd30bd97157935f9fec35
     }
 }
