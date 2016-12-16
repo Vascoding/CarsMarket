@@ -14,5 +14,7 @@ namespace Blog.Models
         public FileType FileType { get; set; }
         public int ArticleId { get; set; }
         public virtual Article Article { get; set; }
+        //public int CategoryId { get; set; }
+        //public virtual Category Category { get; set; }
     }
 }   
