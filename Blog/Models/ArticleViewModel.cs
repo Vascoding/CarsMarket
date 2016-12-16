@@ -30,5 +30,15 @@ namespace Blog.Models
         public ICollection<File> Files { get; set; }
 
         public ICollection<Cars> Carses { get; set; }
+
+        public double Price { get; set; }
+
+        [Required]
+        public string Year { get; set; }
+
+        [Required]
+        [StringLength(20)]
+        public string Phone { get; set; }
+
     }
 }

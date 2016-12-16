@@ -19,11 +19,15 @@ namespace Blog.Models
             this.tags = new HashSet<Tag>();
         }
 
-        public Article(string authorId, string title, string content, int categoryId)
+        public Article(string authorId, string title, string phone, string content, string year, int categoryId, double price)
         {
             this.AuthorId = authorId;
             this.Title = title;
             this.Content = content;
+            this.CategoryId = categoryId;
+            this.Phone = phone;
+            this.Year = year;
+            this.Price = price;
             this.CategoryId = categoryId;
             this.tags = new HashSet<Tag>();
             this.files = new List<File>();
@@ -73,6 +77,17 @@ namespace Blog.Models
         }
 
         public virtual ICollection<FilePath> FilePaths { get; set; }
+
+        [Required]
+        public double Price { get; set; }
+
+        [Required]
+        [StringLength(20)]
+        public string Phone { get; set; }
+
+        [Required]
+        public string Year { get; set; }
+
 
     }
 }

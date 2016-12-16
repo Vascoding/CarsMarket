@@ -24,11 +24,20 @@
         }
 
         <p>
-            @Model.Content
+            <span>Information: </span>@Model.Content
         </p>
+        <p>
+            <span>Year of production: </span>@Model.Year
+        </p>
+        <p>
+            Price: <span class="text-danger">@Model.Price лв.</span>
+        </p>
+
         <small class="author">
-            --author @Model.Author.FullName
+            Contact Person @Model.Author.FullName
         </small>
+        <p>Call: @Model.Phone</p>
+        <p>E-mail: @Model.Author.Email</p>
 
 
         <footer class="pull-right">

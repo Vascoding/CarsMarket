@@ -13,49 +13,67 @@
                 @Html.ValidationSummary("", new { @class = "text-danger" })
 
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Title, new { @class = "control-label col-sm-4" })
+                    @Html.LabelFor(m => m.Title, new {@class = "control-label col-sm-4"})
                     <div class="col-sm-4">
-                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Title, new {@class = "form-control"})
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Content, new { @class = "control-label col-sm-4" })
+                    @Html.LabelFor(m => m.Year, new { @class = "control-label col-sm-4" })
                     <div class="col-sm-4">
-                        @Html.TextAreaFor(m => m.Content, new { @class = "form-control", @rows = "7" })
+                        @Html.TextBoxFor(m => m.Year, new { @class = "form-control" })
                     </div>
                 </div>
-
                 <div class="form-group">
+                    @Html.LabelFor(m => m.Phone, new { @class = "control-label col-sm-4" })
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Price, new {@class = "control-label col-sm-4"})
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(m => m.Price, new {@class = "form-control"})
+                    </div>
+                </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Content, new { @class = "control-label col-sm-4" })
+                        <div class="col-sm-4">
+                            @Html.TextAreaFor(m => m.Content, new { @class = "form-control", @rows = "7" })
+                        </div>
+                    </div>
 
-                    @Html.LabelFor(m => m.CategoryId, new { @class = "col-sm-4 control-label" })
-                    <div class="dropdown col-sm-4">
-                        @Html.DropDownListFor(m => m.CategoryId,
+                    <div class="form-group">
+
+                        @Html.LabelFor(m => m.CategoryId, new { @class = "col-sm-4 control-label" })
+                        <div class="dropdown col-sm-4">
+                            @Html.DropDownListFor(m => m.CategoryId,
                         new SelectList(Model.Categories, "Id", "Name"),
                         new { @class = "btn btn-info col-sm-12" })
+                        </div>
+                    </div>
+
+                    <span class="form-group">
+                        @Html.Label("Picture", new { @class = "control-label col-sm-4" })
+                        <div class="col-sm-4">
+                            <input type="file" id="Avatar" name="upload" />
+                        </div>
+                    </span>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Tags, new { @class = "control-label col-sm-4" })
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(m => m.Tags, new { @class = "form-control col-sm-4" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            @Html.ActionLink("Cancel", "Index", "Article", null, new { @class = "btn btn-default" })
+                            <input type="submit" value="Create" class="btn btn-success" />
+                        </div>
                     </div>
                 </div>
-
-                <span class="form-group">
-                    @Html.Label("Picture", new { @class = "control-label col-sm-4" })
-                    <div class="col-sm-4">
-                        <input type="file" id="Avatar" name="upload" />
-                    </div>
-                </span>
-
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Tags, new { @class = "control-label col-sm-4" })
-                    <div class="col-sm-4">
-                        @Html.TextBoxFor(m => m.Tags, new { @class = "form-control col-sm-4" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-4 col-sm-offset-4">
-                        @Html.ActionLink("Cancel", "Index", "Article", null, new { @class = "btn btn-default" })
-                        <input type="submit" value="Create" class="btn btn-success" />
-                    </div>
-                </div>
-            </div>
         }
     </div>
 </div>
