@@ -19,7 +19,8 @@ namespace Blog.Models
             this.tags = new HashSet<Tag>();
         }
 
-        public Article(string authorId, string title, string phone, string content, string year, int categoryId, double price)
+        public Article(string authorId, string title, string phone, string content, 
+            string year, int categoryId, double price, string city, int horsePower)
         {
             this.AuthorId = authorId;
             this.Title = title;
@@ -28,6 +29,8 @@ namespace Blog.Models
             this.Phone = phone;
             this.Year = year;
             this.Price = price;
+            this.City = city;
+            this.HorsePower = horsePower;
             this.CategoryId = categoryId;
             this.tags = new HashSet<Tag>();
             this.files = new List<File>();
@@ -87,6 +90,11 @@ namespace Blog.Models
 
         [Required]
         public string Year { get; set; }
+
+        [StringLength(30)]
+        public string City { get; set; }
+
+        public int HorsePower { get; set; }
 
 
     }

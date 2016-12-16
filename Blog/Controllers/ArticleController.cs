@@ -99,9 +99,9 @@ namespace Blog.Controllers
 
                     // set articles author
                     var article = new Article(authorId, model.Title, model.Phone, model.Content, model.Year, 
-                        model.CategoryId, model.Price);
+                        model.CategoryId, model.Price, model.City, model.HorsePower);
 
-
+                    
                     // save article in DB
                     this.SetArticleTags(article, model, database);
 
@@ -240,6 +240,8 @@ namespace Blog.Controllers
                 model.Phone = article.Phone;
                 model.Year = article.Year;
                 model.Price = article.Price;
+                model.City = article.City;
+                model.HorsePower = article.HorsePower;
                 model.Content = article.Content;
                 model.CategoryId = article.CategoryId;
                 model.Categories = database.Categories
@@ -272,11 +274,14 @@ namespace Blog.Controllers
                     article.Phone = model.Phone;
                     article.Year = model.Year;
                     article.Price = model.Price;
+                    article.City = model.City;
+                    article.HorsePower = model.HorsePower;
                     article.Content = model.Content;
                    
 
                     article.CategoryId = model.CategoryId;
                     this.SetArticleTags(article, model, database);
+
 
                     
 

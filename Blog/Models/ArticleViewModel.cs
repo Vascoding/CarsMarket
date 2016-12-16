@@ -31,6 +31,8 @@ namespace Blog.Models
 
         public ICollection<Cars> Carses { get; set; }
 
+        
+
         public double Price { get; set; }
 
         [Required]
@@ -39,6 +41,11 @@ namespace Blog.Models
         [Required]
         [StringLength(20)]
         public string Phone { get; set; }
+
+        [StringLength(30)]
+        public string City { get; set; }
+
+        public int HorsePower { get; set; }
 
     }
 }
