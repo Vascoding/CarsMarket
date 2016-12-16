@@ -9,12 +9,12 @@
 
         @foreach (var category in Model)
             {
-            <div class="col-sm-6 text-center text-uppercase">
+            <div class="col-md-2 text-center text-uppercase">
                 <p>
-                    <h2>
-                        @Html.ActionLink(string.Format($"{category.Name} ({category.Articles.Count})"),
+                    <h4>
+                        @Html.ActionLink(string.Format($"{category.Name} "),
                         "ListArticles", "Home", new { @categoryId = category.Id }, null)
-                    </h2>
+                    </h4>
                 </p>
             </div>
         }
