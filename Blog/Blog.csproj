@@ -302,6 +302,7 @@
     <Content Include="Views\Cars\Edit.cshtml" />
     <Content Include="Views\Cars\Delete.cshtml" />
     <Content Include="Views\Home\ListCars.cshtml" />
+    <Content Include="Views\Home\ListCategoryAndArticle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
