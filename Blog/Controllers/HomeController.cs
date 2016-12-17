@@ -13,7 +13,7 @@ namespace Blog.Controllers
     {
         public ActionResult Index()
         {
-            return RedirectToAction("ListCategories");
+            return RedirectToAction("ListCategoryAndArticle");
         }
 
         public ActionResult ListCategories()
@@ -63,6 +63,15 @@ namespace Blog.Controllers
 
                 return View(cars);
             }
+        }
+        BlogDbContext db = new BlogDbContext();
+        public ActionResult ListCategoryAndArticle()
+        {
+            List<object> myModel = new List<object>();
+            myModel.Add(db.Categories.ToList());
+            myModel.Add(db.Articles.ToList());
+            return View(myModel);
+
         }
 
         }
