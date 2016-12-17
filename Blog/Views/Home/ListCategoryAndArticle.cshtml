@@ -41,11 +41,11 @@
                      <article>
                          <header>
                              <h4>
-                                @Html.ActionLink(@article.Title, "Details", "Article", new {@id = article.Id}, null)
+                                 @Html.ActionLink(@article.Title, "Details", "Article", new { @id = article.Id }, null)
                              </h4>
                          </header>
-                         <p>
-
+                         
+                         
                              @if (article.Files.Any(f => f.FileType == FileType.Avatar))
                              {
                                  <a class="media-left" href="@Url.Action("Details", "Article", new {id = article.Id})">
@@ -53,20 +53,15 @@
                                  </a>
                              }
 
-                         </p>
+                         
 
 
                          <footer>
 
                              <div class="pull-left">
-                                 @foreach (var tag in article.Tags)
-                                 {
-                                     @Html.ActionLink(tag.Name, "List", "Tag", new {@id = tag.Id}, new {@class = "btn btn-default btn-xs"})
-                                 }
+                                 Price: <span class="text-danger">@article.Price лв.</span>
                              </div>
-                             <small class="author pull-right">
-                                 --author @article.Author.FullName
-                             </small>
+                           
                          </footer>
                      </article>
                  </div>

@@ -12,41 +12,52 @@
                 @Model.Title
             </h2>
         </header>
-        
-        @if (Model.Files.Any(f => f.FileType == Blog.Models.FileType.Avatar))
-        {
-            <dt>
-                Picture
-            </dt>
-                <dd>
-                    <img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Avatar).FileId" alt="avatar" width="800px" />
-                </dd>
-        }
+        <div class="col-sm-6">
+            <article>
+                @if (Model.Files.Any(f => f.FileType == Blog.Models.FileType.Avatar))
+            {
 
-        <p>
-            <span>Information: </span>@Model.Content
-        </p>
-        <p>
-            <span>Year of production: </span>@Model.Year
-        </p>
-        <p>
-            <span>Horse Power: </span>@Model.HorsePower
-        </p>
+                    <dd>
+                        <img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Avatar).FileId"
+                             alt="avatar" width="500px" />
+                    </dd>
+                }
+            </article>
+        </div>
+        <div style="margin-top: 10px; font-size: 20px">
+            <p>
+                <li>Year of production: @Model.Year</li>
+            </p>
+            <p>
+                <li>Horse Power: @Model.HorsePower</li>
+            </p>
 
-        <p>
-            <span>City: </span>@Model.City
-        </p>
-        <p>
-            Price: <span class="text-danger">@Model.Price лв.</span>
-        </p>
+            <p>
+                <li>City: @Model.City</li>
+            </p>
+            <p>
+                <li>Price: <span class="text-danger">@Model.Price лв.</span></li>
+            </p>
 
-        <small class="author">
-            Contact Person @Model.Author.FullName
-        </small>
-        <p>Call: @Model.Phone</p>
-        <p>E-mail: @Model.Author.Email</p>
+            <p>
+                <li>Contact Person: @Model.Author.FullName</li>
+            </p>
+            <p>
+                <li>Call: @Model.Phone</li>
+            </p>
 
-
+            <p>
+                <li>E-mail: @Model.Author.Email</li>
+            </p>
+        </div>
+        <div class="col-sm-12">
+            <br/>
+            <article>
+                <p>
+                    <span>Information: </span>@Model.Content
+                </p>
+            </article>
+        </div>
         <footer class="pull-right">
             @if (User.IsInRole("Admin") || Model.IsAuthor(User.Identity.Name))
             {
