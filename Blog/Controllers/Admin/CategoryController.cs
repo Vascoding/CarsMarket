@@ -60,7 +60,7 @@ namespace Blog.Controllers.Admin
                         {
                             avatar.Content = reader.ReadBytes(upload.ContentLength);
                         }
-                        category.Files = new List<File> { avatar };
+                        category.Files = new List<File> {avatar};
                     }
 
                     database.Categories.Add(category);

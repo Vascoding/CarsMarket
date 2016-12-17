@@ -12,12 +12,12 @@
 
         @foreach (var article in Model)
         {
-            <div class="col-sm-6">
+            <div class="col-md-3">
                 <article>
                     <header>
-                        <h2>
+                        <h4>
                             @Html.ActionLink(@article.Title, "Details", "Article", new { @id = article.Id }, null)
-                        </h2>
+                        </h4>
                         @if (article.Files.Any(f => f.FileType == FileType.Avatar))
                         {
                             <a class="media-left" href="@Url.Action("Details", "Article", new { id = article.Id })">

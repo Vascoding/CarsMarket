@@ -33,9 +33,8 @@ namespace Blog.Controllers
         {
             if (categoryId == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+               return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
             using (var database = new BlogDbContext())
             {
                 var articles = database.Articles
@@ -65,5 +64,6 @@ namespace Blog.Controllers
                 return View(cars);
             }
         }
+
+        }
     }
-}
