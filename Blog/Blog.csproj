@@ -231,6 +231,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="image\logo.png" />
+    <Content Include="image\oil.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -301,6 +303,7 @@
     <Content Include="Views\Cars\Edit.cshtml" />
     <Content Include="Views\Cars\Delete.cshtml" />
     <Content Include="Views\Home\ListCars.cshtml" />
+    <Content Include="Views\Home\ListCategoryAndArticle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

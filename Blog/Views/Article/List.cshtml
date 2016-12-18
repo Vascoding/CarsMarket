@@ -8,12 +8,12 @@
     <div class="row">
         @foreach (var article in Model)
         {
-            <div class="col-sm-6">
+            <div class="col-md-3">
                 <article>
                     <header>
-                        <h2>
+                        <h4>
                             @Html.ActionLink(@article.Title, "Details", "Article", new { @id = article.Id }, null)
-                        </h2>
+                        </h4>
                     </header>
                     <p>
                         

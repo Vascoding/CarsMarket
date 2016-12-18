@@ -13,6 +13,7 @@ namespace Blog.Controllers
     {
         public ActionResult Index(string searchString)
         {
+
             using (var database = new BlogDbContext())
             {
 
@@ -29,8 +30,9 @@ namespace Blog.Controllers
                 }
 
             }
+            
+            return RedirectToAction("ListCategoryAndArticle");
 
-            return RedirectToAction("ListCategories");
         }
 
         public ActionResult ListCategories()
@@ -50,9 +52,8 @@ namespace Blog.Controllers
         {
             if (categoryId == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+               return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
             using (var database = new BlogDbContext())
             {
                 var articles = database.Articles
@@ -83,6 +84,16 @@ namespace Blog.Controllers
             }
         }
 
+        BlogDbContext db = new BlogDbContext();
+        public ActionResult ListCategoryAndArticle()
+        {
+            List<object> myModel = new List<object>();
+            myModel.Add(db.Categories.ToList());
+            myModel.Add(db.Articles.ToList());
+            return View(myModel);
+
+        }
+
+        }
 
     }
-}
