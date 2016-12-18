@@ -31,11 +31,8 @@ namespace Blog.Models
         
         public virtual Cars Cars { get; set; }
 
-        public virtual ICollection<File> Files
-        {
-            get { return this.files; }
-            set { this.files = value; }
-        }
+        public virtual ICollection<File> Files { get; set; }
+
 
         public virtual ICollection<FilePath> FilePaths { get; set; }
     }

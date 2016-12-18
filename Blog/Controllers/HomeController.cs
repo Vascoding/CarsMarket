@@ -11,8 +11,25 @@ namespace Blog.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
+            using (var database = new BlogDbContext())
+            {
+
+                var article = database.Articles
+                    .Include(a => a.Author)
+                    .Include(a => a.Tags)
+                    .Include(s => s.Files)
+                    .ToList();
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    article = article.Where(s => s.Title.Contains(searchString)
+                                                 || s.Content.Contains(searchString)).ToList();
+                    return View(article);
+                }
+
+            }
+
             return RedirectToAction("ListCategories");
         }
 
@@ -65,5 +82,7 @@ namespace Blog.Controllers
                 return View(cars);
             }
         }
+
+
     }
 }

@@ -16,6 +16,7 @@ namespace Blog.Controllers
         // GET: Article
         public ActionResult Index()
         {
+            
             return RedirectToAction("List");
         }
 
@@ -349,8 +350,7 @@ namespace Blog.Controllers
             return isAdmin || isAuthor;
         }
 
-
+        
     }
-
-
+    
 }

@@ -17,7 +17,17 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("SOFTUNI BLOG", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                
+                
+                
             </div>
+            @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+            {
+                <span class="pull-left">
+                    Find by name: @Html.TextBox("SearchString")
+                    <input type="submit" value="Search" />
+                </span>
+            }
             <div class="navbar-collapse collapse">
                 @Html.Partial("_LoginPartial")
             </div>

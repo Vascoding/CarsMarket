@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -19,7 +20,7 @@ namespace Blog.Models
             this.tags = new HashSet<Tag>();
         }
 
-        public Article(string authorId, string title, string phone, string content, 
+        public Article(string authorId, string title, string phone, string content,
             string year, int categoryId, double price, string city, int horsePower)
         {
             this.AuthorId = authorId;
@@ -34,7 +35,6 @@ namespace Blog.Models
             this.CategoryId = categoryId;
             this.tags = new HashSet<Tag>();
             this.files = new List<File>();
-
         }
 
         [ForeignKey("Category")]
@@ -42,7 +42,7 @@ namespace Blog.Models
 
         public virtual Category Category { get; set; }
 
-        
+
         public virtual Cars Cars { get; set; }
 
         [Key]
@@ -57,10 +57,10 @@ namespace Blog.Models
 
         [ForeignKey("Author")]
         public string AuthorId { get; set; }
-        
+
 
         public virtual ApplicationUser Author { get; set; }
-        
+
 
         public bool IsAuthor(string name)
         {
@@ -97,5 +97,6 @@ namespace Blog.Models
         public int HorsePower { get; set; }
 
 
+        
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -33,7 +34,6 @@ namespace Blog.Models
         public ICollection<Cars> Carses { get; set; }
 
 
-
         public double Price { get; set; }
 
         [Required]
@@ -48,5 +48,7 @@ namespace Blog.Models
 
         public int HorsePower { get; set; }
 
+        
+        
     }
 }
