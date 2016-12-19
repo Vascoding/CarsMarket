@@ -24,8 +24,8 @@ namespace Blog.Controllers
                     .ToList();
                 if (!String.IsNullOrEmpty(searchString))
                 {
-                    article = article.Where(s => s.Title.Contains(searchString)
-                                                 || s.Content.Contains(searchString)).ToList();
+                    article = article.Where(s => s.Title.ToLower().Contains(searchString.ToLower())
+                                                 || s.Content.Contains(searchString.ToLower())).ToList();
                     return View(article);
                 }
 
