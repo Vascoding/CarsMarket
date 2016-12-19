@@ -1145,13 +1145,13 @@ figure {
 }
 img {
   vertical-align: middle;
-  padding-top:13px;
+  padding-top:20px;
 }
 .img-responsive,
 .thumbnail > img,
 .thumbnail a > img,
 .carousel-inner > .item > img,
-.carousel-inner > .item > a > img {
+.carousel-inner > .item > a > img { 
   display: block;
   max-width: 100%;
   height: auto;
