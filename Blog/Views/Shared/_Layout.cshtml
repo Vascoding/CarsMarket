@@ -22,9 +22,9 @@
             </div>
             @using (Html.BeginForm("Index", "Home", FormMethod.Get))
             {
-                <div class="pull-left">
-                    Find by name: @Html.TextBox("SearchString")
-                    <input type="submit" value="Search" style=""/>
+                <div class="pull-left" style="padding-top: 10px">
+                    <input id="SearchString" value="" class="form-control" name="SearchString" type="text" placeholder="Find by name...">
+                    <input type="submit" class="btn btn-success"value="Search" style="margin-top: -70px; margin-left: 285px "/>
                 </div>
             }
             <div class="navbar-collapse collapse">
