@@ -17,20 +17,15 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                
-                
-                
-                
-
                 <a href="/" class="navbar-left"><img src="/image/logo.png"></a>
 
             </div>
             @using (Html.BeginForm("Index", "Home", FormMethod.Get))
             {
-                <span class="pull-left">
+                <div class="pull-left">
                     Find by name: @Html.TextBox("SearchString")
-                    <input type="submit" value="Search" />
-                </span>
+                    <input type="submit" value="Search" style=""/>
+                </div>
             }
             <div class="navbar-collapse collapse">
                 @Html.Partial("_LoginPartial")

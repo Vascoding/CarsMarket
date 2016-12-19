@@ -60,7 +60,7 @@ namespace Blog.Controllers.Admin
                         {
                             avatar.Content = reader.ReadBytes(upload.ContentLength);
                         }
-                        category.Files = new List<File> {avatar};
+                        category.Files = new List<File> { avatar };
                     }
 
                     database.Categories.Add(category);
@@ -124,7 +124,10 @@ namespace Blog.Controllers.Admin
             using (var database = new BlogDbContext())
             {
                 var category = database.Categories
+                    .Where(c => c.Id == id)
+                    .Include(c => c.Files)
                     .FirstOrDefault(c => c.Id == id);
+
 
                 if (category == null)
                 {
@@ -145,12 +148,14 @@ namespace Blog.Controllers.Admin
             {
                 var category = database.Categories
                     .FirstOrDefault(c => c.Id == id);
-                var categoryArticles = category.Articles.ToList();
+                var categoryArticles = category.Articles
+                    .ToList();
 
                 foreach (var article in categoryArticles)
                 {
                     database.Articles.Remove(article);
                 }
+                database.Files.Remove(category.Files.First(f => f.FileType == FileType.Avatar));
                 database.Categories.Remove(category);
                 database.SaveChanges();
 

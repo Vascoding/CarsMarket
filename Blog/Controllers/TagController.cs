@@ -29,6 +29,7 @@ namespace Blog.Controllers
                 // Get articles from database
                 var artices = database.Tags
                     .Include(t => t.Articles.Select(a => a.Tags))
+                    .Include(t => t.Articles.Select(a => a.Files))
                     .Include(t => t.Articles.Select(a => a.Author))
                     .FirstOrDefault(t => t.Id == id)
                     .Articles
