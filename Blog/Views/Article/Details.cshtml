@@ -24,38 +24,46 @@
                 }
             </article>
         </div>
-        <div style="margin-top: 10px; font-size: 20px">
+        <div style="margin-top: 10px; font-size: 20px" class="text-info">
             <p>
-                <li>Year of production: @Model.Year</li>
+                <span class="glyphicon glyphicon-list-alt"></span> Year of production: @Model.Year
             </p>
             <p>
-                <li>Horse Power: @Model.HorsePower</li>
-            </p>
-
-            <p>
-                <li>City: @Model.City</li>
-            </p>
-            <p>
-                <li>Price: <span class="text-danger">@Model.Price лв.</span></li>
+                <span class="glyphicon glyphicon-flash"></span> Horse Power: @Model.HorsePower
             </p>
 
             <p>
-                <li>Contact Person: @Model.Author.FullName</li>
+                <span class="glyphicon glyphicon-home"></span> City: @Model.City
+            </p>
+
+
+            <p>
+                <span class="glyphicon glyphicon-usd"></span> Price: <span class="text-danger">@Model.Price лв.</span>
+            </p>
+            
+
+            <p>
+                <span class="glyphicon glyphicon-user"></span> Contact Person: @Model.Author.FullName
             </p>
             <p>
-                <li>Call: @Model.Phone</li>
+                <span class="glyphicon glyphicon-earphone"></span> Call: @Model.Phone
             </p>
 
             <p>
-                <li>E-mail: @Model.Author.Email</li>
+                <span class="glyphicon glyphicon-envelope"></span> E-mail: @Model.Author.Email
             </p>
+            <p>
+                <span class="glyphicon glyphicon-globe"></span> Published on: @Model.DateCreated
+            </p>
+
         </div>
+                    
         <div class="col-sm-12">
             <br/>
             <article>
-                <p>
-                    <span>Information: </span>@Model.Content
-                </p>
+                <div class="pull-left">
+                    <text>Information: @Model.Content</text>
+                </div>
             </article>
         </div>
         <footer class="pull-right">

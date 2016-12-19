@@ -18,7 +18,10 @@ namespace Blog.Models
         public Article()
         {
             this.tags = new HashSet<Tag>();
+            
         }
+
+
 
         public Article(string authorId, string title, string phone, string content,
             string year, int categoryId, double price, string city, int horsePower)
@@ -35,6 +38,7 @@ namespace Blog.Models
             this.CategoryId = categoryId;
             this.tags = new HashSet<Tag>();
             this.files = new List<File>();
+            this.DateCreated = DateTime.Now;
         }
 
         [ForeignKey("Category")]
@@ -96,7 +100,7 @@ namespace Blog.Models
 
         public int HorsePower { get; set; }
 
+        public DateTime DateCreated { get; set; }
 
-        
     }
 }
