@@ -26,10 +26,12 @@
                 @if (Model.Files.Any(f => f.FileType == Blog.Models.FileType.Avatar))
             {
 
-                    <dd>
-                        <img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Avatar).FileId"
-                             alt="avatar" width="500px" />
-                    </dd>
+                <dd>
+                    <img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Avatar).FileId"
+                         alt="avatar" width="500px" />
+                   
+                </dd>
+
                 }
             </article>
         </div>
