@@ -101,7 +101,7 @@ namespace Blog.Controllers
 
                     // set articles author
                     var article = new Article(authorId, model.Title, model.Phone, model.Content, model.Year, 
-                        model.CategoryId, model.Price, model.City, model.HorsePower);
+                        model.CategoryId, model.Price, model.City, model.HorsePower, model.Condition);
 
                     
                     // save article in DB
@@ -243,6 +243,7 @@ namespace Blog.Controllers
                 model.Phone = article.Phone;
                 model.Year = article.Year;
                 model.Price = article.Price;
+                model.Condition = article.Condition;
                 model.City = article.City;
                 model.HorsePower = article.HorsePower;
                 model.Content = article.Content;
@@ -282,6 +283,7 @@ namespace Blog.Controllers
                     article.Content = model.Content;
                     article.CategoryId = model.CategoryId;
                     article.Files = model.Files;
+                    article.Condition = model.Condition;
 
                     this.SetArticleTags(article, model, database);
 
@@ -349,6 +351,8 @@ namespace Blog.Controllers
 
             return isAdmin || isAuthor;
         }
+
+
 
         
     }

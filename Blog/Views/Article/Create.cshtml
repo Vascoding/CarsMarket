@@ -24,6 +24,8 @@
                         @Html.TextBoxFor(m => m.Year, new { @class = "form-control" })
                     </div>
                 </div>
+               
+                
                 <div class="form-group">
                     @Html.LabelFor(m => m.Phone, new { @class = "control-label col-sm-4" })
                     <div class="col-sm-4">
@@ -55,22 +57,36 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                <div class="form-group">
 
-                        @Html.LabelFor(m => m.CategoryId, new { @class = "col-sm-4 control-label" })
-                        <div class="dropdown col-sm-4">
-                            @Html.DropDownListFor(m => m.CategoryId,
-                        new SelectList(Model.Categories, "Id", "Name"),
-                        new { @class = "btn btn-info col-sm-12" })
-                        </div>
+                    @Html.LabelFor(m => m.CategoryId, new { @class = "col-sm-4 control-label" })
+                    <div class="dropdown col-sm-4">
+                        @Html.DropDownListFor(m => m.CategoryId,
+                            new SelectList(Model.Categories, "Id", "Name"),
+                            new { @class = "btn btn-info col-sm-12" })
                     </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Condition, new { @class = " control-label col-sm-4" })
+                    <div class="dropdown col-sm-4">
+                        @Html.DropDownListFor(m => m.Condition,
+                        new List<SelectListItem> {
+                            new SelectListItem { Value = "New" , Text = "New" },
+                            new SelectListItem { Value = "Used" , Text = "Used" },
+                            new SelectListItem { Value = "New Import" , Text = "New Import" },
+                            new SelectListItem { Value = "For Parts" , Text = "For Parts" }
+                        },
+                        new { @class = "btn btn-info col-sm-12" })
+                    </div>
+                </div>
 
-                    <span class="form-group">
+                <span class="form-group">
                         @Html.Label("Picture", new { @class = "control-label col-sm-4" })
                         <span class="col-sm-4">
                             <input type="file" id="Avatar" name="upload" />
                         </span>
                     </span>
+
 
                     <div class="form-group">
                         @Html.LabelFor(m => m.Tags, new { @class = "control-label col-sm-4" })

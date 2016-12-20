@@ -25,7 +25,7 @@ namespace Blog.Models
 
 
         public Article(string authorId, string title, string phone, string content,
-            string year, int categoryId, double price, string city, int horsePower)
+            string year, int categoryId, double price, string city, int horsePower, string condition)
         {
             this.AuthorId = authorId;
             this.Title = title;
@@ -34,6 +34,7 @@ namespace Blog.Models
             this.Phone = phone;
             this.Year = year;
             this.Price = price;
+            this.Condition = condition;
             this.City = city;
             this.HorsePower = horsePower;
             this.CategoryId = categoryId;
@@ -103,6 +104,7 @@ namespace Blog.Models
 
         public DateTime DateCreated { get; set; }
 
-        
+        [StringLength(30)]
+        public string Condition { get; set; }
     }
 }
