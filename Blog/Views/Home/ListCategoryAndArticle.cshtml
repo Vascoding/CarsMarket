@@ -46,11 +46,10 @@
     <div class="container">
 
         <div class="row">
-            <h4>Cars under 3000лв</h4>
+            <h4>Last added</h4>
             @foreach (var article in listArticle)
             {
-                if (article.Price < 3000)
-                {
+                
                     <div class="col-md-3">
                         <article>
                             <header>
@@ -79,9 +78,13 @@
                             </footer>
                         </article>
                     </div>
-                }
+                
             }
 
         </div>
     </div>
     <hr />
+
+
+
+

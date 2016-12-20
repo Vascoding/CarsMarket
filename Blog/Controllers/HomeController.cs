@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using Blog.Models;
 
 namespace Blog.Controllers
@@ -89,7 +90,7 @@ namespace Blog.Controllers
         {
             List<object> myModel = new List<object>();
             myModel.Add(db.Categories.ToList());
-            myModel.Add(db.Articles.ToList());
+            myModel.Add(db.Articles.OrderByDescending(d=>d.DateCreated).Take(4).ToList());
             return View(myModel);
 
         }
