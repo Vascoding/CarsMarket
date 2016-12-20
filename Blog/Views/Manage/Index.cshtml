@@ -26,19 +26,8 @@
                     }
                     ]
                 </dd>
-                <dt> Change Name:</dt>
-                <dd>
-                    [
-                    @if (Model.HasPassword)
-                    {
-                        @Html.ActionLink("Change your name", "ChangePassword")
-                    }
-                    else
-                    {
-                        @Html.ActionLink("Create", "SetPassword")
-                    }
-                    ]
-                </dd>
+              
+                
                 @*
                     Phone Numbers can used as a second factor of verification in a two-factor authentication system.
 
