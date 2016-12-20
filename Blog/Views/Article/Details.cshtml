@@ -5,7 +5,16 @@
 }
 
 <div class="container">
-    
+
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/bg_BG/sdk.js#xfbml=1&version=v2.8&appId=1813083162293390";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
     <article>
         <header>
             <h2>
@@ -42,7 +51,7 @@
             <p>
                 <span class="glyphicon glyphicon-usd"></span> Price: <span class="text-danger">@Model.Price лв.</span>
             </p>
-            
+
 
             <p>
                 <span class="glyphicon glyphicon-user"></span> Contact Person: @Model.Author.FullName
@@ -59,24 +68,25 @@
             </p>
 
         </div>
-                    
+
         <div class="col-sm-12">
-            <br/>
+            <br />
             <article>
                 <div class="pull-left">
                     <text>Information: @Model.Content</text>
                 </div>
             </article>
         </div>
+        <div class="fb-share-button" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u&amp;src=sdkpreparse">Споделяне</a></div>
         <footer class="pull-right">
             @if (User.IsInRole("Admin") || Model.IsAuthor(User.Identity.Name))
             {
-                
-                @Html.ActionLink("Edit", "Edit", "Article", new {@id = Model.Id}, new {@class = "btn btn-success btn-xs"})
-                @Html.ActionLink("Delete", "Delete", "Article", new {@id = Model.Id}, new {@class = "btn btn-danger btn-xs"})
+
+                @Html.ActionLink("Edit", "Edit", "Article", new { @id = Model.Id }, new { @class = "btn btn-success btn-xs" })
+                @Html.ActionLink("Delete", "Delete", "Article", new { @id = Model.Id }, new { @class = "btn btn-danger btn-xs" })
             }
 
-            @Html.ActionLink("Back", "Index", "Article", null, new {@class = "btn btn-default btn-xs"})
+            @Html.ActionLink("Back", "Index", "Article", null, new { @class = "btn btn-default btn-xs" })
         </footer>
     </article>
 </div>
