@@ -34,6 +34,9 @@
     </div>
     <div class="container body-content">
         @RenderBody()
+        <p>
+            <span class="glyphicon glyphicon-user" style="nav-left: "></span> Total Number of visitors: @ApplicationInstance.Application["Totaluser"]
+        </p>
         <footer class="pull-right">
             <a href="/" class="navbar-center"><img src="/image/oil-logo.jpg"></a>
             <p>&copy; @DateTime.Now.Year - Codealerz Team. All rights reserved.</p>
