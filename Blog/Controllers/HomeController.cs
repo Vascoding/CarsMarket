@@ -23,6 +23,8 @@ namespace Blog.Controllers
                     .Include(a => a.Tags)
                     .Include(s => s.Files)
                     .ToList();
+
+                //search bar
                 if (!String.IsNullOrEmpty(searchString))
                 {
                     article = article.Where(s => s.Title.ToLower().Contains(searchString.ToLower())).ToList();
