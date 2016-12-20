@@ -107,6 +107,7 @@ namespace Blog.Controllers
                     // save article in DB
                     this.SetArticleTags(article, model, database);
 
+                    //uploading photo
                     if (upload != null && upload.ContentLength > 0)
                     {
                         var avatar = new File
