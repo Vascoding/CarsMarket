@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using Microsoft.Ajax.Utilities;
 
 namespace Blog.Models
 {
@@ -102,5 +103,6 @@ namespace Blog.Models
 
         public DateTime DateCreated { get; set; }
 
+        
     }
 }
