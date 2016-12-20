@@ -25,13 +25,18 @@ namespace Blog.Controllers
                     .ToList();
                 if (!String.IsNullOrEmpty(searchString))
                 {
-                    article = article.Where(s => s.Title.ToLower().Contains(searchString.ToLower())
-                                                 || s.Content.Contains(searchString.ToLower())).ToList();
-                    return View(article);
+                    article = article.Where(s => s.Title.ToLower().Contains(searchString.ToLower())).ToList();
+
+                    List<object> myModel = new List<object>();
+                    myModel.Add(db.Categories.ToList());
+                    myModel.Add(article);
+                    myModel.Add(article.Count);
+                   
+                    return View(myModel);
                 }
 
             }
-            
+
             return RedirectToAction("ListCategoryAndArticle");
 
         }
@@ -53,7 +58,7 @@ namespace Blog.Controllers
         {
             if (categoryId == null)
             {
-               return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             using (var database = new BlogDbContext())
             {
@@ -90,11 +95,11 @@ namespace Blog.Controllers
         {
             List<object> myModel = new List<object>();
             myModel.Add(db.Categories.ToList());
-            myModel.Add(db.Articles.OrderByDescending(d=>d.DateCreated).Take(4).ToList());
+            myModel.Add(db.Articles.OrderByDescending(d => d.DateCreated).Take(4).ToList());
             return View(myModel);
 
         }
 
-        }
-
     }
+
+}
