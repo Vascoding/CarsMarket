@@ -49,8 +49,12 @@ namespace Blog.Models
         public int HorsePower { get; set; }
 
         public DateTime DateCreated { get; set; }
-        
+
         public string Condition  { get; set; }
+
+        public string FuelType { get; set; }
+
+       
 
     }
 }

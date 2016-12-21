@@ -25,7 +25,7 @@ namespace Blog.Models
 
 
         public Article(string authorId, string title, string phone, string content,
-            string year, int categoryId, double price, string city, int horsePower, string condition)
+            string year, int categoryId, double price, string city, int horsePower, string condition, string fueltype)
         {
             this.AuthorId = authorId;
             this.Title = title;
@@ -34,6 +34,7 @@ namespace Blog.Models
             this.Phone = phone;
             this.Year = year;
             this.Price = price;
+            this.FuelType = fueltype;
             this.Condition = condition;
             this.City = city;
             this.HorsePower = horsePower;
@@ -106,5 +107,7 @@ namespace Blog.Models
 
         [StringLength(30)]
         public string Condition { get; set; }
+        [StringLength(30)]
+        public string FuelType { get; set; }
     }
 }
