@@ -66,6 +66,21 @@
                         new { @class = "btn btn-info col-sm-12" })
                 </div>
             </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Condition, new { @class = " control-label col-sm-4" })
+                <div class="dropdown col-sm-4">
+                    @Html.DropDownListFor(m => m.Condition,
+                        new List<SelectListItem> {
+                            new SelectListItem { Value = "New" , Text = "New" },
+                            new SelectListItem { Value = "Used" , Text = "Used" },
+                            new SelectListItem { Value = "New Import" , Text = "New Import" },
+                            new SelectListItem { Value = "For Parts" , Text = "For Parts" },
+                            },
+                        new { @class = "btn btn-info col-sm-12" })
+                </div>
+            </div>
+
             <div class="form-group">
                 @Html.LabelFor(m => m.FuelType, new { @class = " control-label col-sm-4" })
                 <div class="dropdown col-sm-4">
