@@ -9,8 +9,8 @@
     <div class="well">
 
         <h2>Edit Category</h2>
-
-        @using (Html.BeginForm("Edit", "Category", FormMethod.Post, new { @class = "form-horizontal" }))
+        <div class="form-horizontal">
+        @using (Html.BeginForm("Edit", "Category", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <div class="form-group">
                 @Html.LabelFor(m => m.Name, new { @class = "control-label col-sm-4" })
@@ -18,7 +18,14 @@
                     @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
                 </div>
             </div>
+            <div class="form-group">
+                <span class="control-label col-sm-4"><strong>Current Logo</strong></span>
+                <div class="col-sm-4">
+                    <img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Avatar).FileId" alt="avatar" width="200" />
+                </div>
+            </div>
             
+
             <div class="form-group">
                 <div class="col-sm-4 col-sm-offset-4">
                     @Html.ActionLink("Cancel", "List", "Category", new { @class = "btn btn-default" })
@@ -27,6 +34,6 @@
             </div>
             
         }
-        
+        </div>
     </div>
 </div>

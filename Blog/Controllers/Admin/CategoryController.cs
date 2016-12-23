@@ -84,6 +84,7 @@ namespace Blog.Controllers.Admin
             using (var database = new BlogDbContext())
             {
                 var category = database.Categories
+                    .Include(a => a.Files)
                     .FirstOrDefault(c => c.Id == id);
 
                 if (category == null)
@@ -97,12 +98,30 @@ namespace Blog.Controllers.Admin
         //
         // Post: Category/Edit
         [HttpPost]
-        public ActionResult Edit(Category category)
+        public ActionResult Edit(Category category, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
                 using (var database = new BlogDbContext())
                 {
+                    if (upload != null && upload.ContentLength > 0)
+                    {
+                        if (category.Files.Any(f => f.FileType == FileType.Avatar))
+                        {
+                            database.Files.Remove(category.Files.First(f => f.FileType == FileType.Avatar));
+                        }
+                        var avatar = new File
+                        {
+                            FileName = System.IO.Path.GetFileName(upload.FileName),
+                            FileType = FileType.Avatar,
+                            ContentType = upload.ContentType
+                        };
+                        using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                        {
+                            avatar.Content = reader.ReadBytes(upload.ContentLength);
+                        }
+                        category.Files = new List<File> { avatar };
+                    }
                     database.Entry(category).State = EntityState.Modified;
                     database.SaveChanges();
 
