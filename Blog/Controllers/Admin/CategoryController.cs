@@ -44,10 +44,15 @@ namespace Blog.Controllers.Admin
         [Authorize]
         public ActionResult Create(Category category, HttpPostedFileBase upload)
         {
+            
             if (ModelState.IsValid)
             {
                 using (var database = new BlogDbContext())
                 {
+                    if (upload == null)
+                    {
+                        return RedirectToAction("Create");
+                    }
                     if (upload != null && upload.ContentLength > 0)
                     {
                         var avatar = new File

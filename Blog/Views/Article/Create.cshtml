@@ -6,14 +6,15 @@
 <div class="container">
     <div class="well">
         <h2>Create Article</h2>
+
         @using (Html.BeginForm("Create", "Article", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
             <div class="form-horizontal">
-                @Html.ValidationSummary("", new { @class = "text-danger" })
+                @Html.ValidationSummary("Forms in red are required", new { @class = "text-danger" })
 
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Title, new {@class = "control-label col-sm-4"})
+                    @Html.LabelFor(m => m.Title, new {@class = "control-label col-sm-4 text-danger"})
                     <div class="col-sm-4 ">
                         @Html.TextBoxFor(m => m.Title, new {@class = "form-control",
                        placeholder = "E.g. Mercedes S-CLass 320 CDI"})
@@ -21,7 +22,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Year, new { @class = "control-label col-sm-4" })
+                    @Html.LabelFor(m => m.Year, new { @class = "control-label col-sm-4 text-danger" })
                     <div class="col-sm-4">
                         @Html.TextBoxFor(m => m.Year, new { @class = "form-control",
                        placeholder = "Year of production"
@@ -31,7 +32,7 @@
                
                 
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Phone, new { @class = "control-label col-sm-4" })
+                    @Html.LabelFor(m => m.Phone, new { @class = "control-label col-sm-4 text-danger" })
                     <div class="col-sm-4">
                         @Html.TextBoxFor(m => m.Phone, new { @class = "form-control",
                        placeholder = "+359##########"
@@ -63,7 +64,7 @@
                     </div>
                 </div>
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Content, new { @class = "control-label col-sm-4" })
+                        @Html.LabelFor(m => m.Content, new { @class = "control-label col-sm-4 text-danger" })
                         <div class="col-sm-4">
                             @Html.TextAreaFor(m => m.Content, new { @class = "form-control", @rows = "7" })
                         </div>
@@ -71,7 +72,7 @@
 
                 <div class="form-group">
 
-                    @Html.LabelFor(m => m.CategoryId, new { @class = "col-sm-4 control-label" })
+                    @Html.LabelFor(m => m.Categories, new { @class = "col-sm-4 control-label text-danger" })
                     <div class="dropdown col-sm-4">
                         @Html.DropDownListFor(m => m.CategoryId,
                             new SelectList(Model.Categories, "Id", "Name"),
@@ -79,7 +80,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Condition, new { @class = " control-label col-sm-4" })
+                    @Html.LabelFor(m => m.Condition, new { @class = " control-label col-sm-4 text-danger" })
                     <div class="dropdown col-sm-4">
                         @Html.DropDownListFor(m => m.Condition,
                         new List<SelectListItem> {
@@ -92,7 +93,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.FuelType, new { @class = " control-label col-sm-4" })
+                    @Html.LabelFor(m => m.FuelType, new { @class = " control-label col-sm-4 text-danger" })
                     <div class="dropdown col-sm-4">
                         @Html.DropDownListFor(m => m.FuelType,
                         new List<SelectListItem> {
@@ -106,7 +107,7 @@
                     </div>
                 </div>
                 <span class="form-group">
-                        @Html.Label("Picture", new { @class = "control-label col-sm-4" })
+                        @Html.Label("Picture", new { @class = "control-label col-sm-4 text-danger" })
                         <span class="col-sm-4">
                             <input type="file" id="Avatar" name="upload" />
                         </span>
@@ -114,7 +115,7 @@
 
 
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Tags, new { @class = "control-label col-sm-4" })
+                        @Html.LabelFor(m => m.Tags, new { @class = "control-label col-sm-4 text-danger" })
                         <div class="col-sm-4">
                             @Html.TextBoxFor(m => m.Tags, new { @class = "form-control col-sm-4" })
                         </div>

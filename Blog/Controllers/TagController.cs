@@ -21,7 +21,7 @@ namespace Blog.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                throw new System.ArgumentException("Parameter cannot be null", "original");
             }
 
             using (var database = new BlogDbContext())

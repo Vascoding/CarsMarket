@@ -89,48 +89,49 @@ namespace Blog.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ArticleViewModel model, HttpPostedFileBase upload)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                using (var database = new BlogDbContext())
+                return RedirectToAction("Create");
+            }
+
+            using (var database = new BlogDbContext())
+            {
+                // get author id
+                var authorId = database.Users
+                    .Where(u => u.UserName == this.User.Identity.Name)
+                    .First()
+                    .Id;
+
+                // set articles author
+                var article = new Article(authorId, model.Title, model.Phone, model.Content, model.Year,
+                    model.CategoryId, model.Price, model.City, model.HorsePower, model.Condition, model.FuelType);
+
+
+                // save article in DB
+                this.SetArticleTags(article, model, database);
+                
+                //uploading photo
+                if (upload != null && upload.ContentLength > 0)
                 {
-                    // get author id
-                    var authorId = database.Users
-                        .Where(u => u.UserName == this.User.Identity.Name)
-                        .First()
-                        .Id;
-
-                    // set articles author
-                    var article = new Article(authorId, model.Title, model.Phone, model.Content, model.Year, 
-                        model.CategoryId, model.Price, model.City, model.HorsePower, model.Condition, model.FuelType);
-
-                    
-                    // save article in DB
-                    this.SetArticleTags(article, model, database);
-
-                    //uploading photo
-                    if (upload != null && upload.ContentLength > 0)
+                    var avatar = new File
                     {
-                        var avatar = new File
-                        {
-                            FileName = System.IO.Path.GetFileName(upload.FileName),
-                            FileType = FileType.Avatar,
-                            ContentType = upload.ContentType
-                        };
-                        using (var reader = new System.IO.BinaryReader(upload.InputStream))
-                        {
-                            avatar.Content = reader.ReadBytes(upload.ContentLength);
-                        }
-                        article.Files = new List<File> { avatar };
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = FileType.Avatar,
+                        ContentType = upload.ContentType
+                    };
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        avatar.Content = reader.ReadBytes(upload.ContentLength);
                     }
-
-                    database.Articles.Add(article);
-                    database.SaveChanges();
-                    
-                    return RedirectToAction("Index");
+                    article.Files = new List<File> { avatar };
                 }
 
+                database.Articles.Add(article);
+                database.SaveChanges();
+
+                return RedirectToAction("Index");
             }
-            return View(model);
+            
         }
 
         //
@@ -289,7 +290,7 @@ namespace Blog.Controllers
                     article.FuelType = model.FuelType;
 
                     this.SetArticleTags(article, model, database);
-
+                    
 
                     if (upload != null && upload.ContentLength > 0)
                     {
@@ -309,12 +310,13 @@ namespace Blog.Controllers
                         }
                         article.Files = new List<File> { avatar };
                     }
-
+                    
                     // Save article state in database
                     database.Entry(article).State = EntityState.Modified;
                     database.SaveChanges();
                 }
             }
+            
             // Redirect to the index page 
             return RedirectToAction("Index");
         }
